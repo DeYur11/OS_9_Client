@@ -1,6 +1,7 @@
 package com.example.main.model;
 
 import com.example.main.ClientListener;
+import com.example.main.FinalResult;
 import com.example.main.MainWindow;
 import com.example.main.VoteWindow;
 import javafx.collections.ObservableList;
@@ -66,7 +67,9 @@ public class ServerListenThread extends Thread{
                 else if(message instanceof Vector<?>){
                     System.out.println("Results received!");
 
+                    Vector<Idea> ideasVector  = (Vector<Idea>) message;
 
+                    clientSocket.sendFinalMessage(ideasVector);
                 }
             }
             catch (Exception e){
