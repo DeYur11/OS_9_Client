@@ -29,6 +29,17 @@ public class Idea implements Serializable {
         this.ideaID = ideaAmount;
         this.ideaText = ideaText;
     }
+    public boolean isIsVoted() {
+        return isVoted.get();
+    }
+
+    public BooleanProperty isVotedProperty() {
+        return isVoted;
+    }
+
+    public int getIdeaVotes() {
+        return ideaVotes;
+    }
 
     public static int getIdeaAmount() {
         return ideaAmount;
