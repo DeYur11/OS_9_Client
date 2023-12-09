@@ -45,13 +45,15 @@ public class VoteWindow implements Initializable {
     public void sendVotes(){
         ObservableList<Idea> checkedIdeas = FXCollections.observableArrayList();
         for(var i: totalIdeas){
-            if(selectedIdeas.size() > 3){
-                return;
-            }
+
             if(i.isIsVoted()){
+                if(selectedIdeas.size() > 3){
+                    return;
+                }
                 checkedIdeas.add(i);
             }
         }
+        selectedIdeas.setAll(checkedIdeas);
     }
 }
 

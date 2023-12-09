@@ -1,9 +1,13 @@
 package com.example.main;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -11,13 +15,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import com.example.main.model.Client;
 import com.example.main.model.ClientSocket;
 import com.example.main.model.Idea;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class MainWindow implements Initializable {
+public class MainWindow implements Initializable, ClientListener {
     @FXML
     TextArea ideaText;
+
+    @FXML
+    BorderPane root;
     @FXML
     static ObservableList<Idea> ideas = FXCollections.observableArrayList();
 
@@ -38,6 +49,30 @@ public class MainWindow implements Initializable {
         textColumn.setCellValueFactory(new PropertyValueFactory<Idea, String>("ideaText"));
         ideaTable.setItems(ideas);
     }
+
+    @Override
+    public void endAccepting() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Parent mainWindow;
+                try {
+                    mainWindow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("VoteWindow.fxml")));
+                    Scene mainWindowsScene = new Scene(mainWindow);
+                    Stage curStage = (Stage) root.getScene().getWindow();
+                    curStage.setScene(mainWindowsScene);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void startVote() {
+
+    }
+
 
     @FXML
     public void onAddIdea(){

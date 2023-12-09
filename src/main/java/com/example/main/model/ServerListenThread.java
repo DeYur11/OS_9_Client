@@ -5,7 +5,8 @@ import com.example.main.MainWindow;
 import com.example.main.VoteWindow;
 import javafx.collections.ObservableList;
 import tools.messages.EndAcceptingMessage;
-import tools.messages.TimeoutVoteMessage;
+
+import tools.messages.StartVoteMessage;
 import tools.messages.VoteResultMessage;
 
 import java.io.ObjectInputStream;
@@ -50,7 +51,7 @@ public class ServerListenThread extends Thread{
                         System.out.println("Idea with this ID already exists! Idea: "+ ((Idea) message).getIdeaText());
                     }
                 }
-                else if(message instanceof TimeoutVoteMessage){
+                else if(message instanceof StartVoteMessage){
                     System.out.println("Vote started!");
                     clientSocket.startOfVote();
                 }
