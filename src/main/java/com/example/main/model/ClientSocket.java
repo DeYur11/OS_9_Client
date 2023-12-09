@@ -1,6 +1,6 @@
-package model;
+package com.example.main.model;
 
-import com.example.os_9_client.ClientListener;
+import com.example.main.ClientListener;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -36,7 +36,9 @@ public class ClientSocket {
 
     public void sendIdea(Idea idea){
         try {
+            System.out.println(idea);
             outStream.writeObject(idea);
+            outStream.flush();
         }catch (IOException e){
             e.printStackTrace();
         }

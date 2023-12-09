@@ -1,10 +1,12 @@
-package model;
+package com.example.main.model;
 
-public class Idea {
+import java.io.Serializable;
+
+public class Idea implements Serializable {
     public static int ideaAmount = 1;
-    private int ideaID;
+    public int ideaID;
     private String ideaText;
-    private Client ideaAuthor;
+
 
     @Override
     public boolean equals(Object o) {
@@ -15,13 +17,12 @@ public class Idea {
 
         if (ideaID != idea.ideaID) return false;
         if (!ideaText.equals(idea.ideaText)) return false;
-        return ideaAuthor.equals(idea.ideaAuthor);
+        return false;
     }
 
-    public Idea(String ideaText, Client ideaAuthor) {
+    public Idea(String ideaText) {
         this.ideaID = ideaAmount;
         this.ideaText = ideaText;
-        this.ideaAuthor = ideaAuthor;
         ideaAmount++;
     }
 
@@ -49,11 +50,4 @@ public class Idea {
         this.ideaText = ideaText;
     }
 
-    public Client getIdeaAuthor() {
-        return ideaAuthor;
-    }
-
-    public void setIdeaAuthor(Client ideaAuthor) {
-        this.ideaAuthor = ideaAuthor;
-    }
 }

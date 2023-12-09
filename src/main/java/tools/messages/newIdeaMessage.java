@@ -1,6 +1,6 @@
-package model.messages;
+package tools.messages;
 
-import model.Idea;
+import com.example.main.model.Idea;
 
 import java.io.Serializable;
 

@@ -1,6 +1,6 @@
-package com.example.os_9_client;
+package com.example.main;
 
-import model.ClientSocket;
+import com.example.main.model.ClientSocket;
 
 public abstract class ClientSocketContainer {
     public static ClientSocket clientSocket;

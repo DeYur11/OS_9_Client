@@ -4,6 +4,8 @@ module com.example.os_9_client {
 
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.example.os_9_client to javafx.fxml;
-    exports com.example.os_9_client;
+    opens com.example.main to javafx.fxml;
+    opens com.example.main.model to javafx.fxml;
+    exports com.example.main;
+    exports com.example.main.model;
 }

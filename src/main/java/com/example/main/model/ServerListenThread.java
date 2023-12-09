@@ -1,6 +1,6 @@
-package model;
+package com.example.main.model;
 
-import model.messages.EndAcceptingMessage;
+import tools.messages.EndAcceptingMessage;
 
 import java.io.ObjectInputStream;
 import java.net.Socket;

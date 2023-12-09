@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.main.MainWindow">
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="ideaTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="№" />
-          <TableColumn prefWidth="75.0" text="Text" />
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="№" />
+          <TableColumn fx:id="textColumn" prefWidth="75.0" text="Text" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -32,7 +32,7 @@
          <right>
             <VBox alignment="CENTER" prefHeight="82.0" prefWidth="120.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="onAddIdea" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" text="Add" />
+                  <Button mnemonicParsing="false" onAction="#onAddIdea" prefHeight="26.0" prefWidth="90.0" text="Add" />
                </children>
             </VBox>
          </right>
