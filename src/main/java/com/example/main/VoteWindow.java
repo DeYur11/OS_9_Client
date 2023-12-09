@@ -54,6 +54,7 @@ public class VoteWindow implements Initializable {
                 checkedIdeas.add(i);
             }
         }
+        System.out.println(checkedIdeas);
         selectedIdeas.setAll(checkedIdeas);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.main.model;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 import java.io.Serializable;
 
@@ -8,7 +9,7 @@ public class Idea implements Serializable {
     public static int ideaAmount = 0;
     public int ideaID;
     private String ideaText;
-    private BooleanProperty isVoted;
+    private transient BooleanProperty isVoted = new SimpleBooleanProperty();
     private int ideaVotes;
 
 
@@ -69,5 +70,4 @@ public class Idea implements Serializable {
     public void increaseVoteAmount(){
         this.ideaVotes++;
     }
-
 }
