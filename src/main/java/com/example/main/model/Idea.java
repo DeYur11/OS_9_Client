@@ -9,7 +9,7 @@ public class Idea implements Serializable {
     public int ideaID;
     private String ideaText;
     private BooleanProperty isVoted;
-    private int ideaVotes = 0;
+    private int ideaVotes;
 
 
     @Override
@@ -29,17 +29,6 @@ public class Idea implements Serializable {
         this.ideaID = ideaAmount;
         this.ideaText = ideaText;
     }
-    public boolean isIsVoted() {
-        return isVoted.get();
-    }
-
-    public BooleanProperty isVotedProperty() {
-        return isVoted;
-    }
-
-    public int getIdeaVotes() {
-        return ideaVotes;
-    }
 
     public static int getIdeaAmount() {
         return ideaAmount;
@@ -53,6 +42,18 @@ public class Idea implements Serializable {
         return ideaID;
     }
 
+    public boolean isIsVoted() {
+        return isVoted.get();
+    }
+
+    public BooleanProperty isVotedProperty() {
+        return isVoted;
+    }
+
+    public int getIdeaVotes() {
+        return ideaVotes;
+    }
+
     public void setIdeaID(int ideaID) {
         this.ideaID = ideaID;
     }
@@ -63,6 +64,10 @@ public class Idea implements Serializable {
 
     public void setIdeaText(String ideaText) {
         this.ideaText = ideaText;
+    }
+
+    public void increaseVoteAmount(){
+        this.ideaVotes++;
     }
 
 }
