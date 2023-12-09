@@ -45,6 +45,23 @@ public class StartScreenController implements Initializable, ClientListener {
         });
     }
 
+    public void startVote(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Parent voteWindow;
+                try{
+                    voteWindow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("VoteWindow.fxml")));
+                    Scene voteScene = new Scene(voteWindow);
+                    Stage curStage = (Stage) root.getScene().getWindow();
+                    curStage.setScene(voteScene);
+                }catch(IOException e){
+                    throw new RuntimeException();
+                }
+            }
+        });
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ClientSocketContainer.clientSocket = new ClientSocket(this);

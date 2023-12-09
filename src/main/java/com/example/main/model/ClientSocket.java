@@ -35,6 +35,10 @@ public class ClientSocket {
         System.out.println("End");
     }
 
+    public void startOfVote(){
+        clientListener.startVote();
+    }
+
     public void sendIdea(Idea idea){
         try {
             System.out.println(idea);

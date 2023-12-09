@@ -1,9 +1,11 @@
 package com.example.main.model;
 
+import com.example.main.ClientListener;
 import com.example.main.MainWindow;
 import com.example.main.VoteWindow;
 import javafx.collections.ObservableList;
 import tools.messages.EndAcceptingMessage;
+import tools.messages.TimeoutVoteMessage;
 import tools.messages.VoteResultMessage;
 
 import java.io.ObjectInputStream;
@@ -47,6 +49,10 @@ public class ServerListenThread extends Thread{
                     else{
                         System.out.println("Idea with this ID already exists! Idea: "+ ((Idea) message).getIdeaText());
                     }
+                }
+                else if(message instanceof TimeoutVoteMessage){
+                    System.out.println("Vote started!");
+                    clientSocket.startOfVote();
                 }
                 else if(message instanceof VoteResultMessage){
                     Vector<Integer> selectedIdeas = new Vector<>();
