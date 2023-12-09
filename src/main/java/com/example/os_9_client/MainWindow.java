@@ -30,14 +30,14 @@ public class MainWindow implements Initializable {
 
     }
     @FXML
-    private TableColumn<Idea, int> idColumn;
+    private TableColumn<Idea, Integer> idColumn;
     @FXML
     private TableColumn<Idea, String> textColumn;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        idColumn.setCellValueFactory(new PropertyValueFactory<Idea, int>("id"));
-        
+        idColumn.setCellValueFactory(new PropertyValueFactory<Idea, Integer>("id"));
+
     }
 }
