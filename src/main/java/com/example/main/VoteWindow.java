@@ -5,6 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class VoteWindow {
-    private ObservableList<Idea> selectedIdeas = FXCollections.observableArrayList();
+    private static ObservableList<Idea> selectedIdeas = FXCollections.observableArrayList();
+    public static ObservableList<Idea> getSelectedIdeas(){
+        return selectedIdeas;
+    }
 
 }

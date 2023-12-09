@@ -5,6 +5,7 @@ import com.example.main.ClientListener;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Vector;
 
 public class ClientSocket {
     private Socket socket;
@@ -43,8 +44,17 @@ public class ClientSocket {
             e.printStackTrace();
         }
     }
-
+    public void sendVoteResults(Vector<Integer> voteResults){
+        try {
+            System.out.println(voteResults);
+            outStream.writeObject(voteResults);
+            outStream.flush();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     public Socket getSocket() {
         return socket;
     }
+
 }

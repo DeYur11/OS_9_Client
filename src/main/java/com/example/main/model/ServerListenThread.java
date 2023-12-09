@@ -1,11 +1,14 @@
 package com.example.main.model;
 
 import com.example.main.MainWindow;
+import com.example.main.VoteWindow;
 import javafx.collections.ObservableList;
 import tools.messages.EndAcceptingMessage;
+import tools.messages.VoteResultMessage;
 
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.Vector;
 
 public class ServerListenThread extends Thread{
     private ObjectInputStream ideaInputStream;
@@ -44,6 +47,14 @@ public class ServerListenThread extends Thread{
                     else{
                         System.out.println("Idea with this ID already exists! Idea: "+ ((Idea) message).getIdeaText());
                     }
+                }
+                else if(message instanceof VoteResultMessage){
+                    Vector<Integer> selectedIdeas = new Vector<>();
+                    for(int i =0; i<VoteWindow.getSelectedIdeas().size(); i++){
+                        selectedIdeas.add(VoteWindow.getSelectedIdeas().get(i).getIdeaID());
+                    }
+                    clientSocket.sendVoteResults(selectedIdeas);
+                    System.out.println("Vote results sent!");
                 }
             }
             catch (Exception e){
