@@ -48,7 +48,7 @@ public class VoteWindow implements Initializable {
         for(var i: totalIdeas){
 
             if(i.isIsVoted()){
-                if(selectedIdeas.size() > 3){
+                if(checkedIdeas.size() > 3){
                     return;
                 }
                 checkedIdeas.add(i);

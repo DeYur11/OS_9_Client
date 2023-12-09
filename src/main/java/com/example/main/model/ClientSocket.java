@@ -58,6 +58,9 @@ public class ClientSocket {
             e.printStackTrace();
         }
     }
+    public void sendFinalMessage(Vector<Idea> bestIdeas){
+        this.clientListener.sendFinalMessage(bestIdeas);
+    }
     public Socket getSocket() {
         return socket;
     }
