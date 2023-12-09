@@ -63,6 +63,11 @@ public class ServerListenThread extends Thread{
                     clientSocket.sendVoteResults(selectedIdeas);
                     System.out.println("Vote results sent!");
                 }
+                else if(message instanceof Vector<?>){
+                    System.out.println("Results received!");
+
+
+                }
             }
             catch (Exception e){
                 e.printStackTrace();
