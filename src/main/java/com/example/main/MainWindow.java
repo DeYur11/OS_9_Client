@@ -19,20 +19,18 @@ public class MainWindow implements Initializable {
     @FXML
     TextArea ideaText;
     @FXML
-    ObservableList<Idea> ideas = FXCollections.observableArrayList();
+    static ObservableList<Idea> ideas = FXCollections.observableArrayList();
 
     @FXML
     TableView<Idea> ideaTable;
-
-    @FXML
-    public void addIdea(){
-
-    }
     @FXML
     private TableColumn<Idea, Integer> idColumn;
     @FXML
     private TableColumn<Idea, String> textColumn;
 
+    public static ObservableList<Idea> getIdeaList(){
+        return ideas;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -48,4 +46,5 @@ public class MainWindow implements Initializable {
         ClientSocketContainer.clientSocket.sendIdea(ideaToSend);
         ideaTable.refresh();
     }
+
 }

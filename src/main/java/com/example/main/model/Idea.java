@@ -3,7 +3,7 @@ package com.example.main.model;
 import java.io.Serializable;
 
 public class Idea implements Serializable {
-    public static int ideaAmount = 1;
+    public static int ideaAmount = 0;
     public int ideaID;
     private String ideaText;
 

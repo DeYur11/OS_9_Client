@@ -13,7 +13,7 @@ public class ClientSocket {
     private ObjectOutputStream outStream;
     public ClientSocket(ClientListener clientListener){
         try {
-            socket = new Socket("localhost", 999);
+            socket = new Socket("localhost", 150);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
