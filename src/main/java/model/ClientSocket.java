@@ -10,7 +10,7 @@ public class ClientSocket {
     private Socket socket;
     private ServerListenThread serverListenThread;
     private ClientListener clientListener;
-
+    private ObjectOutputStream outStream;
     public ClientSocket(ClientListener clientListener){
         try {
             socket = new Socket("localhost", 999);
@@ -22,7 +22,7 @@ public class ClientSocket {
 
         serverListenThread = new ServerListenThread(socket, this);
         try {
-            ObjectOutputStream some = new ObjectOutputStream(socket.getOutputStream());
+            this.outStream = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -32,5 +32,17 @@ public class ClientSocket {
     public void endOfAccepting(){
         clientListener.endAccepting();
         System.out.println("End");
+    }
+
+    public void sendIdea(Idea idea){
+        try {
+            outStream.writeObject(idea);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public Socket getSocket() {
+        return socket;
     }
 }
