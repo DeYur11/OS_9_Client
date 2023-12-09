@@ -40,6 +40,7 @@ public class VoteWindow implements Initializable {
         ideaNumberColumn.setCellValueFactory(new PropertyValueFactory<Idea, Integer>("ideaID"));
         ideaTextColumn.setCellValueFactory(new PropertyValueFactory<Idea, String>("ideaText"));
         ideaTable.setItems(totalIdeas);
+        ideaTable.setEditable(true);
     }
     @FXML
     public void sendVotes(){
