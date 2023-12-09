@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class TestConnection {
     public static void main(String[] args) throws IOException {
-        Socket socket = new Socket("localhost", 999);
+        Socket socket = new Socket("localhost", 150);
         ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
         while (true){
             Scanner scanner = new Scanner(System.in);
