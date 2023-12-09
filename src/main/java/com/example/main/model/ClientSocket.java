@@ -36,6 +36,7 @@ public class ClientSocket {
     }
 
     public void startOfVote(){
+        System.out.println(clientListener.getClass());
         clientListener.startVote();
     }
 
@@ -61,4 +62,7 @@ public class ClientSocket {
         return socket;
     }
 
+    public void setClientListener(ClientListener clientListener) {
+        this.clientListener = clientListener;
+    }
 }

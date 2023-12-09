@@ -1,7 +1,7 @@
 package com.example.main;
 
 public interface ClientListener {
-    public void endAccepting();
-    public void startVote();
+     default void endAccepting() {};
+     default void startVote(){};
 
 }

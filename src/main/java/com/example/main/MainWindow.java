@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import com.example.main.model.Client;
 import com.example.main.model.ClientSocket;
 import com.example.main.model.Idea;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -25,13 +26,12 @@ import java.util.ResourceBundle;
 
 public class MainWindow implements Initializable, ClientListener {
     @FXML
-    TextArea ideaText;
-
-    @FXML
-    BorderPane root;
+    TextArea ideaText;;
     @FXML
     static ObservableList<Idea> ideas = FXCollections.observableArrayList();
 
+    @FXML
+    private BorderPane root;
     @FXML
     TableView<Idea> ideaTable;
     @FXML
@@ -48,10 +48,16 @@ public class MainWindow implements Initializable, ClientListener {
         idColumn.setCellValueFactory(new PropertyValueFactory<Idea, Integer>("ideaID"));
         textColumn.setCellValueFactory(new PropertyValueFactory<Idea, String>("ideaText"));
         ideaTable.setItems(ideas);
+        ClientSocketContainer.clientSocket.setClientListener(this);
     }
 
     @Override
     public void endAccepting() {
+
+    }
+
+    @Override
+    public void startVote() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -59,18 +65,13 @@ public class MainWindow implements Initializable, ClientListener {
                 try {
                     mainWindow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("VoteWindow.fxml")));
                     Scene mainWindowsScene = new Scene(mainWindow);
-                    Stage curStage = (Stage) root.getScene().getWindow();
+                    Stage curStage = (Stage) ideaTable.getScene().getWindow();
                     curStage.setScene(mainWindowsScene);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
         });
-    }
-
-    @Override
-    public void startVote() {
-
     }
 
 
