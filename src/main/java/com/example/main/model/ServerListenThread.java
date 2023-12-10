@@ -13,8 +13,9 @@ import java.util.Vector;
 
 public class ServerListenThread extends Thread{
     private ObjectInputStream ideaInputStream;
-    private static final byte END = 66;
-    private static final byte CONNECT_REQUEST = 1;
+    private static final int END_OF_WORK = 66;
+    private static final int END_OF_CLIENT = 55;
+    private static final int CONNECT_REQUEST = 1;
     private ClientSocket clientSocket;
     private Socket socket;
     public ServerListenThread(Socket socket, ClientSocket clientSocket) {
@@ -34,16 +35,21 @@ public class ServerListenThread extends Thread{
         while(true){
             try{
                 Object message = ideaInputStream.readObject();
-                System.out.println("Accec");
+                System.out.println("Message accepted");
                 if(message.getClass().equals(EndAcceptingMessage.class)){
                     clientSocket.endOfAccepting();
                 }else if(message instanceof  String){
                     System.out.println("Message");
                     System.out.println((String)message);;
                 }else if(message instanceof Integer){
-                    if((Integer)message == END){
-                        socket.getOutputStream().write(END);
+                    switch ((Integer) message) {
+                        case END_OF_WORK -> socket.getOutputStream().write(END_OF_WORK);
+                        case END_OF_CLIENT -> {
+                            System.out.println("End of client");
+                            return;
+                        }
                     }
+
                 }
                 else if(message instanceof Idea){
                     if(!(MainWindow.getIdeaList().get(Idea.ideaAmount-1).getIdeaID() == ((Idea) message).getIdeaID())){
@@ -82,6 +88,7 @@ public class ServerListenThread extends Thread{
             }
         }
     }
+
 
 
 

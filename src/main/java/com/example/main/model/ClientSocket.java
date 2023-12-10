@@ -10,6 +10,7 @@ import java.util.Vector;
 
 public class ClientSocket {
     private static final byte END_WAITING = 66;
+    private static final Integer END_OF_CLIENT = 55;
     private static final byte CONNECT_REQUEST = 1;
     private Socket socket;
     private ServerListenThread serverListenThread;
@@ -75,7 +76,13 @@ public class ClientSocket {
     public void endOfWork(){
         this.clientListener.endWork();
     }
-
+    public void sendDeathMessage(){
+        try {
+            this.outStream.writeObject(END_OF_CLIENT);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void setClientListener(ClientListener clientListener) {
         this.clientListener = clientListener;
     }
