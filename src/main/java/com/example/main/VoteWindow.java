@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -75,13 +76,46 @@ public class VoteWindow implements Initializable, ClientListener {
 
             if(i.isIsVoted()){
                 if(checkedIdeas.size() > 3){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Помилка");
+                    alert.setHeaderText("Помилка при введені");
+                    alert.setContentText("Помилка при голосуванні, будь ласка проголосуйте не більше ніж за 3 ідеї");
+                    alert.showAndWait();
                     return;
                 }
                 checkedIdeas.add(i);
             }
         }
-        System.out.println(checkedIdeas);
         selectedIdeas.setAll(checkedIdeas);
+        System.out.println(checkedIdeas);
+        System.out.println("Ідеї за які проголосував: ");
+
+    }
+
+    @Override
+    public void end(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Sending ideas without button!");
+                ObservableList<Idea> checkedIdeas = FXCollections.observableArrayList();
+                for(var i: totalIdeas){
+
+                    if(i.isIsVoted()){
+                        if(checkedIdeas.size() > 3){
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Помилка");
+                            alert.setHeaderText("Помилка при введені");
+                            alert.setContentText("Помилка при голосуванні, будь ласка проголосуйте не більше ніж за 3 ідеї");
+                            alert.showAndWait();
+                            return;
+                        }
+                        checkedIdeas.add(i);
+                    }
+                }
+                selectedIdeas.setAll(checkedIdeas);
+            }
+        });
     }
 }
 

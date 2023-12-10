@@ -28,7 +28,7 @@ public class StartScreenController implements Initializable, ClientListener {
     BorderPane root;
 
     @Override
-    public void endAccepting() {
+    public void end() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

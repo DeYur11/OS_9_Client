@@ -1,7 +1,7 @@
 package com.example.main.model;
 
 import com.example.main.ClientListener;
-import javafx.scene.control.Alert;
+import com.example.main.VoteWindow;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -37,7 +37,7 @@ public class ClientSocket {
     }
 
     public void endOfAccepting(){
-        clientListener.endAccepting();
+        clientListener.end();
         System.out.println("End");
     }
 
@@ -55,14 +55,23 @@ public class ClientSocket {
             e.printStackTrace();
         }
     }
-    public void sendVoteResults(Vector<Integer> voteResults){
+    public void sendVoteResults(){
         try {
-            System.out.println(voteResults);
-            outStream.writeObject(voteResults);
+
+            this.clientListener.end();
+            Thread.sleep(1000);
+            Vector<Integer> selectedIdeas = new Vector<>();
+            for(int i = 0; i< VoteWindow.getSelectedIdeas().size(); i++){
+                selectedIdeas.add(VoteWindow.getSelectedIdeas().get(i).getIdeaID());
+            }
+            System.out.println(selectedIdeas);
+            outStream.writeObject(selectedIdeas);
             outStream.flush();
             this.clientListener.nextStage();
         }catch (IOException e){
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
     public void sendFinalMessage(Vector<Idea> bestIdeas){

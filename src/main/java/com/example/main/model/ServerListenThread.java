@@ -28,7 +28,6 @@ public class ServerListenThread extends Thread{
             e.printStackTrace();
         }
     }
-
     @Override
     public void run(){
         System.out.println("Listen started");
@@ -66,11 +65,8 @@ public class ServerListenThread extends Thread{
                     clientSocket.startOfVote();
                 }
                 else if(message instanceof VoteResultMessage){
-                    Vector<Integer> selectedIdeas = new Vector<>();
-                    for(int i =0; i<VoteWindow.getSelectedIdeas().size(); i++){
-                        selectedIdeas.add(VoteWindow.getSelectedIdeas().get(i).getIdeaID());
-                    }
-                    clientSocket.sendVoteResults(selectedIdeas);
+
+                    clientSocket.sendVoteResults();
                     System.out.println("Vote results sent!");
                 }
                 else if(message instanceof Vector<?>){

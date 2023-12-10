@@ -70,4 +70,13 @@ public class Idea implements Serializable {
     public void increaseVoteAmount(){
         this.ideaVotes++;
     }
+
+    @Override
+    public String toString() {
+        return "Idea{" +
+                "ideaID=" + ideaID +
+                ", ideaText='" + ideaText + '\'' +
+                ", ideaVotes=" + ideaVotes +
+                '}';
+    }
 }

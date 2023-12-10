@@ -7,7 +7,7 @@ import javafx.scene.control.Alert;
 import java.util.Vector;
 
 public interface ClientListener {
-     default void endAccepting() {};
+     default void end() {};
      default void startVote(){};
      default void sendFinalMessage(Vector<Idea> bestIdeas){};
      default void nextStage(){};

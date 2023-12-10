@@ -52,7 +52,7 @@ public class MainWindow implements Initializable, ClientListener {
     }
 
     @Override
-    public void endAccepting() {}
+    public void end() {}
 
     @Override
     public void startVote() {
