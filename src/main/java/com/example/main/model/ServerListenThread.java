@@ -68,7 +68,7 @@ public class ServerListenThread extends Thread{
                     System.out.println("Results received!");
 
                     Vector<Idea> ideasVector  = (Vector<Idea>) message;
-
+                    System.out.println(ideasVector);
                     clientSocket.sendFinalMessage(ideasVector);
                 }
             }

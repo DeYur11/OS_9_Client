@@ -54,11 +54,14 @@ public class ClientSocket {
             System.out.println(voteResults);
             outStream.writeObject(voteResults);
             outStream.flush();
+            this.clientListener.nextStage();
         }catch (IOException e){
             e.printStackTrace();
         }
     }
     public void sendFinalMessage(Vector<Idea> bestIdeas){
+        System.out.println(this.clientListener.getClass());
+        System.out.println(bestIdeas);
         this.clientListener.sendFinalMessage(bestIdeas);
     }
     public Socket getSocket() {

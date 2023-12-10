@@ -8,5 +8,6 @@ public interface ClientListener {
      default void endAccepting() {};
      default void startVote(){};
      default void sendFinalMessage(Vector<Idea> bestIdeas){};
+     default void nextStage(){};
 
 }

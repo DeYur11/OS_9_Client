@@ -1,6 +1,7 @@
 package com.example.main;
 
 import com.example.main.model.Idea;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,15 +29,22 @@ public class FinalResult implements Initializable, ClientListener {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ClientSocketContainer.clientSocket.setClientListener(this);
         idColumn.setCellValueFactory(new PropertyValueFactory<Idea, Integer>("ideaID"));
         textColumn.setCellValueFactory(new PropertyValueFactory<Idea, String>("ideaText"));
         ideaTable.setItems(ideas);
-        ClientSocketContainer.clientSocket.setClientListener(this);
     }
 
     @Override
     public void sendFinalMessage(Vector<Idea> bestIdeas){
-        ideas.setAll(bestIdeas);
-
+        System.out.println("Applying ideas");
+        System.out.println(bestIdeas);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                ideas.setAll(bestIdeas);
+                ideaTable.refresh();
+            }
+        });
     }
 }

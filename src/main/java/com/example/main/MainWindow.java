@@ -61,6 +61,7 @@ public class MainWindow implements Initializable, ClientListener {
             public void run() {
                 Parent mainWindow;
                 try {
+                    System.out.println("Loading next stage");
                     mainWindow = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("VoteWindow.fxml")));
                     Scene mainWindowsScene = new Scene(mainWindow);
                     Stage curStage = (Stage) ideaTable.getScene().getWindow();
