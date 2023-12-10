@@ -9,9 +9,9 @@
 
 <StackPane fx:id="parentContainer" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.main.StartScreenController">
    <children>
-      <BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0">
          <center>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PLEASE WAIT FOR ADMINISTRATOR TO START" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="WAIT FOR SERVER" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Segoe UI" size="27.0" />
                </font>

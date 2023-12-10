@@ -34,11 +34,11 @@ public class ServerListenThread extends Thread{
         while(true){
             try{
                 Object message = ideaInputStream.readObject();
-                System.out.println("Accec");
+                System.out.println("Object received!");
                 if(message.getClass().equals(EndAcceptingMessage.class)){
                     clientSocket.endOfAccepting();
                 }else if(message instanceof  String){
-                    System.out.println("Message");
+                    System.out.println("Message: ");
                     System.out.println((String)message);;
                 }else if(message instanceof Integer){
                     if((Integer)message == END){
