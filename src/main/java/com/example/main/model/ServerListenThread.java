@@ -1,10 +1,7 @@
 package com.example.main.model;
 
-import com.example.main.ClientListener;
-import com.example.main.FinalResult;
 import com.example.main.MainWindow;
 import com.example.main.VoteWindow;
-import javafx.collections.ObservableList;
 import tools.messages.EndAcceptingMessage;
 
 import tools.messages.StartVoteMessage;
@@ -16,6 +13,8 @@ import java.util.Vector;
 
 public class ServerListenThread extends Thread{
     private ObjectInputStream ideaInputStream;
+    private static final byte END = 66;
+    private static final byte CONNECT_REQUEST = 1;
     private ClientSocket clientSocket;
     private Socket socket;
     public ServerListenThread(Socket socket, ClientSocket clientSocket) {
@@ -41,6 +40,10 @@ public class ServerListenThread extends Thread{
                 }else if(message instanceof  String){
                     System.out.println("Message");
                     System.out.println((String)message);;
+                }else if(message instanceof Integer){
+                    if((Integer)message == END){
+                        socket.getOutputStream().write(END);
+                    }
                 }
                 else if(message instanceof Idea){
                     if(!(MainWindow.getIdeaList().get(Idea.ideaAmount-1).getIdeaID() == ((Idea) message).getIdeaID())){
@@ -73,7 +76,9 @@ public class ServerListenThread extends Thread{
                 }
             }
             catch (Exception e){
-                e.printStackTrace();
+                System.out.println("Ended listen thread");
+                clientSocket.endOfWork();
+                return;
             }
         }
     }

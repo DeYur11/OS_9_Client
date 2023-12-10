@@ -67,6 +67,7 @@ public class VoteWindow implements Initializable, ClientListener {
             }
         });
     }
+
     @FXML
     public void sendVotes(){
         ObservableList<Idea> checkedIdeas = FXCollections.observableArrayList();

@@ -1,6 +1,7 @@
 package com.example.main.model;
 
 import com.example.main.ClientListener;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -8,6 +9,8 @@ import java.net.Socket;
 import java.util.Vector;
 
 public class ClientSocket {
+    private static final byte END_WAITING = 66;
+    private static final byte CONNECT_REQUEST = 1;
     private Socket socket;
     private ServerListenThread serverListenThread;
     private ClientListener clientListener;
@@ -15,6 +18,8 @@ public class ClientSocket {
     public ClientSocket(ClientListener clientListener){
         try {
             socket = new Socket("localhost", 150);
+            socket.getOutputStream().write(CONNECT_REQUEST);
+            socket.getOutputStream().flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -66,6 +71,9 @@ public class ClientSocket {
     }
     public Socket getSocket() {
         return socket;
+    }
+    public void endOfWork(){
+        this.clientListener.endWork();
     }
 
     public void setClientListener(ClientListener clientListener) {
