@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 public class MainWindow implements Initializable, ClientListener {
     @FXML
-    TextArea ideaText;;
+    TextArea ideaText;
     @FXML
     static ObservableList<Idea> ideas = FXCollections.observableArrayList();
 
@@ -80,6 +80,7 @@ public class MainWindow implements Initializable, ClientListener {
         ideas.add(ideaToSend);
         ClientSocketContainer.clientSocket.sendIdea(ideaToSend);
         ideaTable.refresh();
+        ideaText.clear();
     }
 
 }
