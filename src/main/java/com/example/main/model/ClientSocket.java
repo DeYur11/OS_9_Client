@@ -18,7 +18,7 @@ public class ClientSocket {
     private ObjectOutputStream outStream;
     public ClientSocket(ClientListener clientListener){
         try {
-            socket = new Socket("localhost", 150);
+            socket = new Socket("192.168.104.247", 150);
             socket.getOutputStream().write(CONNECT_REQUEST);
             socket.getOutputStream().flush();
         } catch (IOException e) {

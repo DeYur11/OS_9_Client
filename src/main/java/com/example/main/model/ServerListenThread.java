@@ -35,6 +35,7 @@ public class ServerListenThread extends Thread{
             try{
                 Object message = ideaInputStream.readObject();
                 System.out.println("Message accepted");
+                System.out.println(message.getClass());
                 if(message.getClass().equals(EndAcceptingMessage.class)){
                     clientSocket.endOfAccepting();
                 }else if(message instanceof  String){
@@ -51,13 +52,19 @@ public class ServerListenThread extends Thread{
 
                 }
                 else if(message instanceof Idea){
-                    if(!(MainWindow.getIdeaList().get(Idea.ideaAmount-1).getIdeaID() == ((Idea) message).getIdeaID())){
+                    if(MainWindow.getIdeaList().isEmpty()) {
                         Idea.ideaAmount++;
                         System.out.println("New idea arrived! Idea: "+ ((Idea) message).getIdeaText());
                         MainWindow.getIdeaList().add((Idea)message);
-                    }
-                    else{
-                        System.out.println("Idea with this ID already exists! Idea: "+ ((Idea) message).getIdeaText());
+                    }else {
+                        if((!(MainWindow.getIdeaList().get(Idea.ideaAmount-1).getIdeaID() == ((Idea) message).getIdeaID()))){
+                            Idea.ideaAmount++;
+                            System.out.println("New idea arrived! Idea: "+ ((Idea) message).getIdeaText());
+                            MainWindow.getIdeaList().add((Idea)message);
+                        }
+                        else{
+                            System.out.println("Idea with this ID already exists! Idea: "+ ((Idea) message).getIdeaText());
+                        }
                     }
                 }
                 else if(message instanceof StartVoteMessage){
@@ -78,6 +85,7 @@ public class ServerListenThread extends Thread{
                 }
             }
             catch (Exception e){
+                System.out.println(e);
                 System.out.println("Ended listen thread");
                 clientSocket.endOfWork();
                 return;
