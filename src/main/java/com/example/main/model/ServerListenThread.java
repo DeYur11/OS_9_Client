@@ -52,6 +52,7 @@ public class ServerListenThread extends Thread{
 
                 }
                 else if(message instanceof Idea){
+
                     if(MainWindow.getIdeaList().isEmpty()) {
                         Idea.ideaAmount++;
                         System.out.println("New idea arrived! Idea: "+ ((Idea) message).getIdeaText());
@@ -60,6 +61,8 @@ public class ServerListenThread extends Thread{
                         if((!(MainWindow.getIdeaList().get(Idea.ideaAmount-1).getIdeaID() == ((Idea) message).getIdeaID()))){
                             Idea.ideaAmount++;
                             System.out.println("New idea arrived! Idea: "+ ((Idea) message).getIdeaText());
+                            Idea toAdd = (Idea)message;
+                            toAdd.setIsVoted(false);
                             MainWindow.getIdeaList().add((Idea)message);
                         }
                         else{
