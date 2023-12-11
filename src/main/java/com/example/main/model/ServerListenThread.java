@@ -2,6 +2,7 @@ package com.example.main.model;
 
 import com.example.main.MainWindow;
 import com.example.main.VoteWindow;
+import javafx.beans.property.SimpleBooleanProperty;
 import tools.messages.EndAcceptingMessage;
 
 import tools.messages.StartVoteMessage;
@@ -62,7 +63,7 @@ public class ServerListenThread extends Thread{
                             Idea.ideaAmount++;
                             System.out.println("New idea arrived! Idea: "+ ((Idea) message).getIdeaText());
                             Idea toAdd = (Idea)message;
-                            toAdd.setIsVoted(false);
+                            toAdd.setIsVoted(new SimpleBooleanProperty());
                             MainWindow.getIdeaList().add((Idea)message);
                         }
                         else{

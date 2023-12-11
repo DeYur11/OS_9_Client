@@ -31,8 +31,9 @@ public class Idea implements Serializable {
         this.ideaText = ideaText;
     }
 
-    public void setIsVoted(boolean isVoted) {
-        this.isVoted.set(isVoted);
+    public void setIsVoted(BooleanProperty isVoted) {
+        this.isVoted = isVoted;
+        this.isVoted.set(false);
     }
 
     public static int getIdeaAmount() {
